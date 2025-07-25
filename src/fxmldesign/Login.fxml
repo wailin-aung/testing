@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="login-container" stylesheets="@../styles/login-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   
+   <children>
+      <!-- Main Login Card -->
+      <VBox maxHeight="600.0" maxWidth="900.0" spacing="0.0" styleClass="login-card">
+         <children>
+            <!-- Login Form Container -->
+            <HBox spacing="0.0" styleClass="login-content" VBox.vgrow="ALWAYS">
+               <children>
+                  
+                  <!-- Left Side - Branding -->
+                  <VBox spacing="30.0" styleClass="branding-section" stylesheets="@../styles/login-styles.css" HBox.hgrow="ALWAYS">
+                     <children>
+                        <!-- Logo and Title -->
+                        <VBox alignment="CENTER" spacing="20.0" styleClass="logo-section">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-image">
+                                 <image>
+                                    <Image url="@../images/restaurant-logo.png" />
+                                 </image>
+                              </ImageView>
+                              <Label styleClass="brand-title" text="Restaurant Manager">
+                                 <font>
+                                    <Font name="System Bold" size="32.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="brand-subtitle" stylesheets="@../styles/login-styles.css" text="Complete Restaurant Management Solution">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        
+                        <!-- Features List -->
+                        <VBox spacing="16.0" styleClass="features-section">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="feature-item">
+                                 <children>
+                                    <Label styleClass="feature-icon" text="🍽️" />
+                                    <Label styleClass="feature-text" text="Manage Tables &amp; Orders" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="feature-item">
+                                 <children>
+                                    <Label styleClass="feature-icon" text="📊" />
+                                    <Label styleClass="feature-text" text="Real-time Analytics" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="feature-item">
+                                 <children>
+                                    <Label styleClass="feature-icon" text="💰" />
+                                    <Label styleClass="feature-text" text="Revenue Tracking" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="feature-item">
+                                 <children>
+                                    <Label styleClass="feature-icon" text="👥" />
+                                    <Label prefHeight="18.0" prefWidth="136.0" styleClass="feature-text" text="Stock Management" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        
+                        <!-- Create Account Section -->
+                        <VBox alignment="CENTER" spacing="16.0" styleClass="signup-section">
+                           <children>
+                              <Label styleClass="signup-text" text="Don't have an account?">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnCreateAccount" styleClass="create-account-btn" text="Create New Account" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="40.0" left="50.0" right="30.0" top="40.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Right Side - Login Form -->
+                  <VBox spacing="30.0" styleClass="form-section" HBox.hgrow="ALWAYS">
+                     <children>
+                        <!-- Form Header -->
+                        <VBox alignment="CENTER" spacing="8.0" styleClass="form-header">
+                           <children>
+                              <Label styleClass="form-title" text="Welcome Back!">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="form-subtitle" text="Please sign in to your account">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        
+                        <!-- Login Form -->
+                        <VBox spacing="24.0" styleClass="login-form">
+                           <children>
+                              <!-- Username Field -->
+                              <VBox spacing="8.0" styleClass="input-group">
+                                 <children>
+                                    <Label fx:id="username" styleClass="input-label" text="Username">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtusername" promptText="Enter your username" styleClass="modern-input" stylesheets="@../styles/login-styles.css" />
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Password Field -->
+                              <VBox spacing="8.0" styleClass="input-group">
+                                 <children>
+                                    <Label fx:id="password" styleClass="input-label" text="Password">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <PasswordField fx:id="txtpassword" promptText="Enter your password" styleClass="modern-input" />
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Remember Me and Forgot Password -->
+                              <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="form-options">
+                                 <children>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Hyperlink styleClass="forgot-password" text="Forgot Password?" />
+                                 </children>
+                              </HBox>
+                              
+                              <!-- Login Button -->
+                              <Button fx:id="btnlogin" onAction="#loginClick" styleClass="login-btn" text="Sign In">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Button>
+                              
+                              <!-- Divider -->
+                              <HBox alignment="CENTER" spacing="16.0" styleClass="divider-section">
+                                 <children>
+                                    <Separator styleClass="divider-line" HBox.hgrow="ALWAYS" />
+                                    <Label styleClass="divider-text" text="or" />
+                                    <Separator styleClass="divider-line" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              
+                              <!-- Social Login Buttons -->
+                              <VBox spacing="12.0" styleClass="social-login" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="40.0" left="30.0" right="50.0" top="40.0" />
+                     </padding>
+                  </VBox>
+                  
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

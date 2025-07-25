@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox styleClass="main-container" stylesheets="@../styles/order-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderController">
+   <children>
+      <!-- Compact Header -->
+      <HBox alignment="CENTER_LEFT" styleClass="header-section">
+         <children>
+            <Label styleClass="page-title" text="Order Management">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="refreshButton" onAction="#handleRefresh" styleClass="btn-outline-sm" text="🔄" />
+         </children>
+      </HBox>
+
+      <!-- Compact Order Creation -->
+      <VBox styleClass="card-compact">
+         <children>
+            <Label styleClass="section-title-sm" text="New Order">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            
+            <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="form-row-compact">
+               <children>
+                  <VBox spacing="3.0" styleClass="form-group-sm">
+                     <children>
+                        <Label styleClass="form-label-sm" text="Table" />
+                        <ComboBox fx:id="tableComboBox" prefWidth="100.0" promptText="Table" styleClass="form-control-sm" />
+                     </children>
+                  </VBox>
+                  
+                  <VBox spacing="3.0" styleClass="form-group-sm">
+                     <children>
+                        <Label styleClass="form-label-sm" text="Product" />
+                        <ComboBox fx:id="productComboBox" prefWidth="180.0" promptText="Product" styleClass="form-control-sm" />
+                     </children>
+                  </VBox>
+                  
+                  <VBox spacing="3.0" styleClass="form-group-sm">
+                     <children>
+                        <Label styleClass="form-label-sm" text="Qty" />
+                        <Spinner fx:id="quantitySpinner" prefHeight="39.0" prefWidth="87.0" styleClass="form-control-sm" />
+                     </children>
+                  </VBox>
+                  
+                  <Button fx:id="addProductButton" onAction="#handleAddProduct" styleClass="btn-primary-sm" text="+ Add" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+
+      <!-- Compact Current Order -->
+      <VBox maxHeight="266.0" prefHeight="266.0" prefWidth="814.0" styleClass="card-compact">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label styleClass="section-title-sm" text="Current Order">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalAmountLabel" styleClass="total-amount-sm" text="0.00 MMK">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button fx:id="removeFromOrderButton" onAction="#handleRemoveFromOrder" styleClass="btn-secondary-sm" text="Remove" />
+                  <Button fx:id="clearOrderButton" onAction="#handleClearOrder" styleClass="btn-warning-sm" text="Clear" />
+                  <Button fx:id="addOrderButton" onAction="#handleAddOrder" styleClass="btn-success-sm" text="✓ Place Order" />
+               </children>
+            </HBox>
+            
+            <TableView fx:id="currentOrderTable" prefHeight="248.0" prefWidth="784.0" styleClass="table-compact">
+               <columns>
+                  <TableColumn fx:id="currentProductColumn" prefWidth="200.0" text="Product" />
+                  <TableColumn fx:id="currentQuantityColumn" prefWidth="60.0" text="Qty" />
+                  <TableColumn fx:id="currentPriceColumn" prefWidth="100.0" text="Price" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+
+      <!-- Compact Orders History -->
+      <VBox styleClass="card-compact" VBox.vgrow="ALWAYS">
+         <children>
+            <Label styleClass="section-title-sm" text="Order History">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            
+            <TableView fx:id="ordersTable" prefHeight="356.0" prefWidth="784.0" styleClass="table-compact" VBox.vgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="orderGroupIdColumn" prefWidth="100.0" text="Order ID" />
+                  <TableColumn fx:id="tableNumberColumn" prefWidth="60.0" text="Table" />
+                  <TableColumn fx:id="productNamesColumn" prefWidth="250.0" text="Products (Qty)" />
+                  <TableColumn fx:id="totalPriceColumn" prefWidth="90.0" text="Total" />
+                  <TableColumn fx:id="statusColumn" prefWidth="80.0" text="Status" />
+                  <TableColumn fx:id="dateTimeColumn" prefWidth="120.0" text="Date/Time" />
+                  <TableColumn fx:id="paymentMethodColumn" prefWidth="80.0" text="Payment" />
+               </columns>
+            </TableView>
+            
+            <HBox alignment="CENTER" spacing="12.0" styleClass="action-row-compact">
+               <children>
+                  <Button fx:id="updateStatusButton" onAction="#handleUpdateStatus" styleClass="btn-primary-sm" text="Update Status" />
+                  <Button fx:id="generateInvoiceButton" onAction="#handleGenerateInvoice" styleClass="btn-success-sm" text="📄 Invoice" />
+                  <Button fx:id="viewDetailsButton" onAction="#handleViewDetails" styleClass="btn-outline-sm" text="👁 Details" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>

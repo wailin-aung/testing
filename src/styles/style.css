@@ -1,0 +1,39 @@
+.sidebar {
+    -fx-background-color: #1E3A8A;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+
+.sidebar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 10 0;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.nav-button:hover {
+    -fx-background-color: #374ABF;
+}
+
+.nav-button.selected {
+    -fx-background-color: #3B82F6;
+}
+
+.header {
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.add-button {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: white;
+    -fx-padding: 6 12;
+    -fx-background-radius: 5;
+}
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsController">
+   <children>
+      <!-- Reports Header -->
+      <VBox spacing="15.0" styleClass="form-section" stylesheets="@../styles/reports-dashboard-styles.css">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label styleClass="section-header" text="Reports and Analytics">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button fx:id="exportReportButton" onAction="#handleExportReport" styleClass="export-button" text="Export Report">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="printReportButton" onAction="#handlePrintReport" styleClass="print-button" text="Print Report">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            
+            <!-- Report Filters -->
+            <GridPane hgap="15.0" styleClass="form-section" vgap="12.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+               </columnConstraints>
+               <children>
+                  <Label styleClass="field-label" text="Report Type:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                  <ComboBox fx:id="reportTypeCombo" onAction="#handleReportTypeChange" prefWidth="150.0" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <Label styleClass="field-label" text="From Date:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                  <DatePicker fx:id="fromDatePicker" onAction="#handleDateChange" styleClass="form-field" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                  <Label styleClass="field-label" text="To Date:" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                  <DatePicker fx:id="toDatePicker" onAction="#handleDateChange" styleClass="form-field" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+               </children>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+            
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+               <children>
+                  <Button fx:id="generateReportButton" onAction="#handleGenerateReport" styleClass="generate-button" text="Generate Report">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="todayButton" onAction="#handleToday" text="Today" />
+                  <Button fx:id="thisWeekButton" onAction="#handleThisWeek" text="This Week" />
+                  <Button fx:id="thisMonthButton" onAction="#handleThisMonth" text="This Month" />
+                  <Button fx:id="lastMonthButton" onAction="#handleLastMonth" text="Last Month" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+
+      <!-- Dashboard Statistics -->
+      <HBox alignment="CENTER" prefHeight="133.0" prefWidth="946.0" spacing="20.0" styleClass="dashboard-container">
+         <children>
+            <VBox alignment="CENTER" minHeight="64.0" prefHeight="160.0" prefWidth="191.0" spacing="8.0" stylesheets="@../styles/reports-dashboard-styles.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="totalSalesLabel" styleClass="stat-number,primary-stat" text="0 MMK">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="stat-label" text="Total Sales" />
+                  <Label fx:id="salesChangeLabel" styleClass="change-label,positive-change" text="+0.0%" />
+               </children>
+               <styleClass>
+                  <String fx:value="stat-card" />
+                  <String fx:value="sales-card" />
+               </styleClass>
+            </VBox>
+            
+            <VBox alignment="CENTER" minHeight="128.0" prefHeight="160.0" prefWidth="178.0" spacing="8.0" stylesheets="@../styles/reports-dashboard-styles.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="totalOrdersLabel" styleClass="stat-number,success-stat" text="0">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="stat-label" text="Total Orders" />
+                  <Label fx:id="ordersChangeLabel" styleClass="change-label,positive-change" text="+0.0%" />
+               </children>
+               <styleClass>
+                  <String fx:value="stat-card" />
+                  <String fx:value="orders-card" />
+               </styleClass>
+            </VBox>
+            
+            <VBox alignment="CENTER" prefHeight="160.0" prefWidth="190.0" spacing="8.0" stylesheets="@../styles/reports-dashboard-styles.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="avgOrderValueLabel" styleClass="stat-number,info-stat" text="0 MMK">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="stat-label" text="Avg Order Value" />
+                  <Label fx:id="avgChangeLabel" styleClass="change-label,positive-change" text="+0.0%" />
+               </children>
+               <styleClass>
+                  <String fx:value="stat-card" />
+                  <String fx:value="avg-card" />
+               </styleClass>
+            </VBox>
+            
+            <VBox alignment="CENTER" prefHeight="160.0" prefWidth="205.0" spacing="8.0" stylesheets="@../styles/reports-dashboard-styles.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="customersServedLabel" styleClass="stat-number,warning-stat" text="0">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="stat-label" text="Customers Served" />
+                  <Label fx:id="customersChangeLabel" styleClass="change-label,positive-change" text="+0.0%" />
+               </children>
+               <styleClass>
+                  <String fx:value="stat-card" />
+                  <String fx:value="customers-card" />
+               </styleClass>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+
+      <!-- Charts Section -->
+      <TabPane stylesheets="@../styles/reports-dashboard-styles.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+         <tabs>
+            <!-- Sales Chart Tab -->
+            <Tab text="Sales Analytics">
+               <content>
+                  <VBox spacing="15.0" styleClass="chart-container">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                           <children>
+                              <Label styleClass="chart-title" stylesheets="@../styles/reports-dashboard-styles.css" text="Sales Trend">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <ComboBox fx:id="salesChartTypeCombo" onAction="#handleSalesChartChange" prefWidth="120.0" />
+                           </children>
+                        </HBox>
+                        <LineChart fx:id="salesChart" prefHeight="400.0" styleClass="chart" stylesheets="@../styles/reports-dashboard-styles.css">
+                           <xAxis>
+                              <CategoryAxis fx:id="salesXAxis" label="Time Period" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="salesYAxis" label="Sales (MMK)" />
+                           </yAxis>
+                        </LineChart>
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            
+            <!-- Popular Items Tab -->
+            <Tab text="Popular Items">
+               <content>
+                  <VBox spacing="15.0" styleClass="chart-container">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                           <children>
+                              <Label styleClass="chart-title" stylesheets="@../styles/reports-dashboard-styles.css" text="Top Selling Products">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <ComboBox fx:id="popularItemsPeriodCombo" onAction="#handlePopularItemsChange" prefWidth="120.0" />
+                           </children>
+                        </HBox>
+                        <BarChart fx:id="popularItemsChart" prefHeight="400.0" styleClass="chart" stylesheets="@../styles/reports-dashboard-styles.css">
+                           <xAxis>
+                              <CategoryAxis fx:id="itemsXAxis" label="Products" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="itemsYAxis" label="Quantity Sold" />
+                           </yAxis>
+                        </BarChart>
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            
+            <!-- Revenue Breakdown Tab -->
+            <Tab text="Revenue Breakdown">
+               <content>
+                  <VBox spacing="15.0" styleClass="chart-container">
+                     <children>
+                        <Label styleClass="chart-title" stylesheets="@../styles/reports-dashboard-styles.css" text="Revenue by Category">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <PieChart fx:id="revenueChart" labelsVisible="true" legendVisible="true" minHeight="400.0" minWidth="500.0" prefHeight="450.0" prefWidth="600.0" startAngle="90" styleClass="chart" />
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            
+            <!-- Table Performance Tab -->
+            <Tab text="Table Performance">
+               <content>
+                  <VBox spacing="15.0" styleClass="chart-container">
+                     <children>
+                        <Label styleClass="chart-title" stylesheets="@../styles/reports-dashboard-styles.css" text="Table Utilization and Revenue">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tablePerformanceTable" prefHeight="400.0" styleClass="table-compact" stylesheets="@../styles/reports-dashboard-styles.css">
+                           <columns>
+                              <TableColumn fx:id="tableNumberColumn" prefWidth="100.0" text="Table #" />
+                              <TableColumn fx:id="totalOrdersColumn" prefWidth="100.0" text="Total Orders" />
+                              <TableColumn fx:id="totalRevenueColumn" prefWidth="120.0" text="Total Revenue" />
+                              <TableColumn fx:id="avgOrderValueColumn" prefWidth="120.0" text="Avg Order Value" />
+                              <TableColumn fx:id="utilizationRateColumn" prefWidth="120.0" text="Utilization %" />
+                              <TableColumn fx:id="lastOrderColumn" prefWidth="150.0" text="Last Order" />
+                           </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</VBox>

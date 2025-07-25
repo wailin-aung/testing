@@ -1,0 +1,524 @@
+/* ========================================
+   MODERN LOGIN FORM STYLES - JavaFX Compatible
+   ======================================== */
+
+/* Root and Container */
+.root {
+  -fx-font-family: "Segoe UI", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  -fx-font-size: 14px;
+  -fx-font-smoothing-type: lcd;
+}
+
+.login-container {
+  -fx-background-color: #667eea;
+  -fx-background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ========================================
+   MAIN LOGIN CARD
+   ======================================== */
+
+.login-card {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 24;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 40, 0, 0, 10);
+  -fx-border-color: #e2e8f0;
+  -fx-border-radius: 24;
+  -fx-border-width: 1;
+  -fx-min-height: 600;
+  -fx-max-height: 600;
+  -fx-min-width: 900;
+  -fx-max-width: 900;
+}
+
+.login-content {
+  -fx-background-color: transparent;
+}
+
+/* ========================================
+   BRANDING SECTION (LEFT SIDE)
+   ======================================== */
+
+.branding-section {
+  -fx-background-color: #1e293b;
+  -fx-background-radius: 24 0 0 24;
+  -fx-min-width: 450;
+  -fx-max-width: 450;
+}
+
+.logo-section {
+  -fx-background-color: transparent;
+}
+
+.logo-image {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 20, 0, 0, 5);
+}
+
+.brand-title {
+  -fx-text-fill: #ffffff;
+  -fx-font-weight: bold;
+  -fx-font-size: 32;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 0, 2);
+}
+
+.brand-subtitle {
+  -fx-text-fill: #cbd5e1;
+  -fx-font-size: 16;
+  -fx-opacity: 0.9;
+}
+
+/* Features Section */
+.features-section {
+  -fx-background-color: #334155;
+  -fx-background-radius: 16;
+  -fx-padding: 24;
+  -fx-border-color: #475569;
+  -fx-border-radius: 16;
+  -fx-border-width: 1;
+}
+
+.feature-item {
+  -fx-background-color: transparent;
+}
+
+.feature-icon {
+  -fx-font-size: 20;
+  -fx-min-width: 32;
+  -fx-alignment: center;
+}
+
+.feature-text {
+  -fx-text-fill: #e2e8f0;
+  -fx-font-size: 14;
+  -fx-font-weight: bold;
+}
+
+/* Signup Section */
+.signup-section {
+  -fx-background-color: transparent;
+}
+
+.signup-text {
+  -fx-text-fill: #cbd5e1;
+  -fx-font-size: 14;
+}
+
+.create-account-btn {
+  -fx-background-color: transparent;
+  -fx-text-fill: #ffffff;
+  -fx-border-color: #ffffff;
+  -fx-border-radius: 12;
+  -fx-background-radius: 12;
+  -fx-border-width: 2;
+  -fx-padding: 12 24;
+  -fx-font-weight: bold;
+  -fx-font-size: 14;
+  -fx-cursor: hand;
+  -fx-min-width: 180;
+}
+
+.create-account-btn:hover {
+  -fx-background-color: #ffffff;
+  -fx-text-fill: #1e293b;
+  -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 12, 0, 0, 4);
+  -fx-scale-y: 1.05;
+}
+
+.create-account-btn:pressed {
+  -fx-scale-y: 0.95;
+}
+
+/* ========================================
+   FORM SECTION (RIGHT SIDE)
+   ======================================== */
+
+.form-section {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 0 24 24 0;
+  -fx-min-width: 450;
+  -fx-max-width: 450;
+}
+
+.form-header {
+  -fx-background-color: transparent;
+}
+
+.form-title {
+  -fx-text-fill: #1e293b;
+  -fx-font-weight: bold;
+  -fx-font-size: 28;
+}
+
+.form-subtitle {
+  -fx-text-fill: #64748b;
+  -fx-font-size: 14;
+}
+
+/* ========================================
+   FORM INPUTS
+   ======================================== */
+
+.login-form {
+  -fx-background-color: transparent;
+}
+
+.input-group {
+  -fx-background-color: transparent;
+}
+
+.input-label {
+  -fx-text-fill: #374151;
+  -fx-font-weight: bold;
+  -fx-font-size: 14;
+}
+
+.modern-input {
+  -fx-background-color: #f8fafc;
+  -fx-border-color: #e2e8f0;
+  -fx-border-radius: 12;
+  -fx-background-radius: 12;
+  -fx-padding: 16 20;
+  -fx-font-size: 14;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 8, 0, 0, 2);
+  -fx-min-height: 50;
+  -fx-border-width: 2;
+}
+
+.modern-input:focused {
+  -fx-border-color: #3b82f6;
+  -fx-background-color: #ffffff;
+  -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.25), 16, 0, 0, 0);
+}
+
+.modern-input:hover {
+  -fx-border-color: #cbd5e1;
+  -fx-background-color: #ffffff;
+}
+
+/* Form Options */
+.form-options {
+  -fx-background-color: transparent;
+}
+
+.forgot-password {
+  -fx-text-fill: #3b82f6;
+  -fx-font-size: 13;
+  -fx-underline: false;
+}
+
+.forgot-password:hover {
+  -fx-text-fill: #2563eb;
+  -fx-underline: true;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.login-btn {
+  -fx-background-color: #3b82f6;
+  -fx-text-fill: #ffffff;
+  -fx-border-color: transparent;
+  -fx-border-radius: 12;
+  -fx-background-radius: 12;
+  -fx-padding: 16 24;
+  -fx-font-weight: bold;
+  -fx-font-size: 16;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.3), 12, 0, 0, 4);
+  -fx-min-height: 54;
+}
+
+.login-btn:hover {
+  -fx-background-color: #2563eb;
+  -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 16, 0, 0, 6);
+  -fx-scale-y: 1.02;
+}
+
+.login-btn:pressed {
+  -fx-background-color: #1d4ed8;
+  -fx-scale-y: 0.98;
+}
+
+/* ========================================
+   DIVIDER
+   ======================================== */
+
+.divider-section {
+  -fx-background-color: transparent;
+}
+
+.divider-line {
+  -fx-background-color: #e2e8f0;
+  -fx-pref-height: 1;
+}
+
+.divider-text {
+  -fx-text-fill: #9ca3af;
+  -fx-font-size: 12;
+  -fx-padding: 0 16;
+}
+
+/* ========================================
+   SOCIAL LOGIN BUTTONS
+   ======================================== */
+
+.social-login {
+  -fx-background-color: transparent;
+}
+
+.social-btn {
+  -fx-background-color: #f8fafc;
+  -fx-text-fill: #374151;
+  -fx-border-color: #e2e8f0;
+  -fx-border-radius: 12;
+  -fx-background-radius: 12;
+  -fx-border-width: 2;
+  -fx-padding: 12 20;
+  -fx-font-weight: bold;
+  -fx-font-size: 14;
+  -fx-cursor: hand;
+  -fx-min-height: 48;
+  -fx-alignment: center-left;
+  -fx-graphic-text-gap: 12;
+}
+
+.social-btn:hover {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #cbd5e1;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 12, 0, 0, 4);
+  -fx-scale-y: 1.02;
+}
+
+.social-btn:pressed {
+  -fx-scale-y: 0.98;
+}
+
+.google-btn:hover {
+  -fx-border-color: #ea4335;
+  -fx-text-fill: #ea4335;
+}
+
+.microsoft-btn:hover {
+  -fx-border-color: #0078d4;
+  -fx-text-fill: #0078d4;
+}
+
+.social-icon {
+  -fx-font-size: 18;
+}
+
+/* ========================================
+   ALTERNATIVE GRADIENT EFFECTS
+   ======================================== */
+
+/* Create gradient effect using multiple background colors and borders */
+.gradient-blue {
+  -fx-background-color: #3b82f6;
+  -fx-border-color: #2563eb;
+  -fx-border-width: 0 0 3 0;
+}
+
+.gradient-dark {
+  -fx-background-color: #1e293b;
+  -fx-border-color: #334155;
+  -fx-border-width: 0 0 3 0;
+}
+
+/* Enhanced button with layered effect */
+.enhanced-login-btn {
+  -fx-background-color: #3b82f6;
+  -fx-text-fill: #ffffff;
+  -fx-border-color: #2563eb;
+  -fx-border-radius: 12;
+  -fx-background-radius: 12;
+  -fx-border-width: 0 0 4 0;
+  -fx-padding: 16 24;
+  -fx-font-weight: bold;
+  -fx-font-size: 16;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.3), 12, 0, 0, 4);
+  -fx-min-height: 54;
+}
+
+.enhanced-login-btn:hover {
+  -fx-background-color: #2563eb;
+  -fx-border-color: #1d4ed8;
+  -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 16, 0, 0, 6);
+  -fx-scale-y: 1.02;
+}
+
+.enhanced-login-btn:pressed {
+  -fx-background-color: #1d4ed8;
+  -fx-border-color: #1e40af;
+  -fx-scale-y: 0.98;
+  -fx-translate-y: 2;
+}
+
+/* Enhanced branding section with layered colors */
+.enhanced-branding {
+  -fx-background-color: #1e293b;
+  -fx-border-color: #334155;
+  -fx-border-width: 0 4 0 0;
+  -fx-background-radius: 24 0 0 24;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* For smaller screens */
+.compact .login-card {
+  -fx-min-width: 800;
+  -fx-max-width: 800;
+  -fx-min-height: 550;
+  -fx-max-height: 550;
+}
+
+.compact .branding-section {
+  -fx-min-width: 400;
+  -fx-max-width: 400;
+}
+
+.compact .form-section {
+  -fx-min-width: 400;
+  -fx-max-width: 400;
+}
+
+.compact .brand-title {
+  -fx-font-size: 28;
+}
+
+.compact .form-title {
+  -fx-font-size: 24;
+}
+
+.compact .modern-input {
+  -fx-min-height: 45;
+  -fx-padding: 14 18;
+}
+
+.compact .login-btn {
+  -fx-min-height: 48;
+  -fx-padding: 14 20;
+}
+
+/* ========================================
+   ANIMATIONS AND STATES
+   ======================================== */
+
+.fade-in {
+  -fx-opacity: 0;
+}
+
+.fade-in:hover {
+  -fx-opacity: 1;
+}
+
+/* Loading state */
+.loading {
+  -fx-opacity: 0.7;
+  -fx-cursor: wait;
+}
+
+/* Error state */
+.error {
+  -fx-border-color: #ef4444;
+  -fx-background-color: #fef2f2;
+}
+
+.error:focused {
+  -fx-border-color: #dc2626;
+  -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.25), 16, 0, 0, 0);
+}
+
+/* Success state */
+.success {
+  -fx-border-color: #10b981;
+  -fx-background-color: #f0fdf4;
+}
+
+.success:focused {
+  -fx-border-color: #059669;
+  -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.25), 16, 0, 0, 0);
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+.high-contrast .modern-input {
+  -fx-border-width: 3;
+  -fx-border-color: #000000;
+}
+
+.high-contrast .login-btn {
+  -fx-border-width: 2;
+  -fx-border-color: #000000;
+}
+
+/* Focus indicators */
+.modern-input:focused,
+.login-btn:focused,
+.social-btn:focused,
+.create-account-btn:focused {
+  -fx-border-width: 3;
+}
+
+/* ========================================
+   ALTERNATIVE BACKGROUND PATTERNS
+   ======================================== */
+
+/* Since we can't use CSS gradients, create pattern with solid colors */
+.pattern-bg-1 {
+  -fx-background-color: #667eea;
+}
+
+.pattern-bg-2 {
+  -fx-background-color: #764ba2;
+}
+
+.pattern-bg-3 {
+  -fx-background-color: #5a67d8;
+}
+
+/* Layered background effect */
+.layered-bg {
+  -fx-background-color: #667eea, #5a67d8;
+  -fx-background-insets: 0, 20;
+  -fx-background-radius: 0, 20;
+}
+
+/* ========================================
+   ENHANCED VISUAL EFFECTS
+   ======================================== */
+
+/* Create depth with multiple shadows */
+.deep-shadow {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 1),
+    dropshadow(gaussian, rgba(0, 0, 0, 0.2), 12, 0, 0, 4), dropshadow(gaussian, rgba(0, 0, 0, 0.3), 24, 0, 0, 8);
+}
+
+/* Inset effect for inputs */
+.inset-input {
+  -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 2);
+  -fx-background-color: #f8fafc;
+}
+
+/* Raised button effect */
+.raised-button {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 4);
+  -fx-background-color: #3b82f6;
+  -fx-border-color: #2563eb;
+  -fx-border-width: 0 0 3 0;
+}
+
+.raised-button:hover {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 12, 0, 0, 6);
+  -fx-translate-y: -1;
+}
+
+.raised-button:pressed {
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 4, 0, 0, 2);
+  -fx-translate-y: 1;
+}

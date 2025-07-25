@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<VBox stylesheets="@../styles/table-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TableController">
+   <children>
+      <!-- Table Form -->
+      <VBox spacing="15.0" styleClass="form-section" stylesheets="@../styles/main-styles.css">
+         <children>
+            <Label stylesheets="@../styles/product-styles.css" text="Table Management">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            
+            <GridPane hgap="15.0" vgap="12.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="120.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="120.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+               </columnConstraints>
+               <children>
+                  <Label styleClass="field-label" text="Table Number:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                  <TextField fx:id="tableNumberField" promptText="e.g., T001" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  
+                  <Label styleClass="field-label" text="Capacity:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                  <Spinner fx:id="capacitySpinner" prefWidth="100.0" styleClass="form-field" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                  
+                  <Label styleClass="field-label" text="Location:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                  <TextField fx:id="locationField" promptText="e.g., Window Side" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  
+                  <Label styleClass="field-label" text="Status:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="statusComboBox" prefWidth="150.0" promptText="Select status" styleClass="form-field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+               </children>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+            
+            <HBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <Button fx:id="addTableButton" onAction="#handleAddTable" styleClass="compact-add-button" stylesheets="@../styles/product-styles.css" text="Add Table">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="updateTableButton" onAction="#handleUpdateTable" styleClass="compact-update-button" stylesheets="@../styles/product-styles.css" text="Update Table">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="deleteTableButton" onAction="#handleDeleteTable" styleClass="compact-delete-button" stylesheets="@../styles/product-styles.css" text="Delete Table">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="clearFormButton" onAction="#handleClearForm" stylesheets="@../styles/product-styles.css" text="Clear Form">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+      
+      <!-- Quick Actions -->
+      <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="control-section" stylesheets="@../styles/main-styles.css">
+         <children>
+            <Label styleClass="section-label" text="Quick Actions:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="markAvailableButton" onAction="#handleMarkAvailable" styleClass="success-button" text="Mark Available" />
+            <Button fx:id="markOccupiedButton" onAction="#handleMarkOccupied" styleClass="compact-delete-button" stylesheets="@../styles/product-styles.css" text="Mark Occupied" />
+            <Button fx:id="markReservedButton" onAction="#handleMarkReserved" styleClass="compact-update-button" stylesheets="@../styles/product-styles.css" text="Mark Reserved" />
+            <Button fx:id="markMaintenanceButton" onAction="#handleMarkMaintenance" styleClass="danger-button" text="Maintenance" />
+            <Separator orientation="VERTICAL" />
+            <Button fx:id="refreshButton" onAction="#handleRefresh" styleClass="compact-refresh-button" stylesheets="@../styles/product-styles.css" text="🔄 Refresh" />
+            
+            <!-- Tables Grid View -->
+            <ScrollPane fitToWidth="true">
+               <content>
+                  <VBox spacing="20.0" stylesheets="@../styles/table-styles.css">
+                     <children>
+                        <!-- Table Status Legend -->
+                        <HBox alignment="CENTER" spacing="20.0" styleClass="legend-section">
+                           <children>
+                              <Label styleClass="legend-title" text="Status Legend:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Circle fill="#2eff1f" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                 <children>
+                                    <Label text="Available" />
+                                 </children>
+                              </HBox>
+                              <Circle fill="#ff4b1f" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                 <children>
+                                    <Label text="Occupied" />
+                                 </children>
+                              </HBox>
+                              <Circle fill="#d5ff1f" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                 <children>
+                                    <Label text="Reserved" />
+                                 </children>
+                              </HBox>
+                              <Circle fill="#dbe1e8" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+                              <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                 <children>
+                                    <Label text="Maintenance" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        
+                        <!-- Tables Grid -->
+                        <GridPane fx:id="tablesGrid" alignment="CENTER" hgap="15.0" vgap="15.0">
+                     <!-- Tables will be dynamically added here -->
+                  </GridPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+         </padding>
+      </HBox>
+      
+      <!-- Tables List View -->
+      <TableView fx:id="tablesTable" prefHeight="300.0" styleClass="table-compact" stylesheets="@../styles/order-styles.css">
+         <columns>
+            <TableColumn fx:id="tableIdColumn" prefWidth="60.0" text="ID" />
+            <TableColumn fx:id="tableNumberColumn" prefWidth="100.0" text="Table #" />
+            <TableColumn fx:id="capacityColumn" prefWidth="80.0" text="Capacity" />
+            <TableColumn fx:id="locationColumn" prefWidth="150.0" text="Location" />
+            <TableColumn fx:id="statusColumn" prefWidth="120.0" text="Status" />
+            <TableColumn fx:id="currentOrderColumn" prefWidth="150.0" text="Current Order" />
+         </columns>
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem fx:id="editTableMenuItem" onAction="#handleEditTable" text="Edit Table" />
+                  <MenuItem fx:id="viewOrdersMenuItem" onAction="#handleViewOrders" text="View Orders" />
+                  <SeparatorMenuItem />
+                  <MenuItem fx:id="changeStatusMenuItem" onAction="#handleChangeStatus" text="Change Status" />
+                  <MenuItem fx:id="deleteTableMenuItem" onAction="#handleDeleteTable" text="Delete Table" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      
+      <!-- Statistics Section -->
+      <HBox alignment="CENTER" spacing="30.0" styleClass="stats-section" stylesheets="@../styles/main-styles.css">
+         <children>
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label fx:id="totalTablesLabel" styleClass="stat-number" text="0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="stat-label" text="Total Tables" />
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" />
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label fx:id="availableTablesLabel" text="0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="stat-label" text="Available" />
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" />
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label fx:id="occupiedTablesLabel" text="0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="stat-label" text="Occupied" />
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" />
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label fx:id="occupancyRateLabel" styleClass="stat-number" text="0%">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="stat-label" text="Occupancy Rate" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

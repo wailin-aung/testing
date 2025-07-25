@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventoryController">
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-padding: 15 10;" text="Inventory Management">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <TabPane fx:id="mainTabPane" style="-fx-background-color: #f0f2f5; -fx-tab-min-width: 100px; -fx-tab-max-width: 150px;" stylesheets="@../styles/reports-dashboard-styles.css" BorderPane.alignment="CENTER">
+         <tabs>
+            <!-- Ingredients Tab -->
+            <Tab fx:id="ingredientsTab" closable="false" text="🥬 Ingredients">
+               <content>
+                  <VBox spacing="15.0" style="-fx-background-color: #f0f2f5;">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-fill: #2c3e50;" text="Ingredients Management" />
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20;">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #495057;" text="➕ Add New Ingredient:" />
+                              <HBox spacing="8.0">
+                                 <children>
+                                    <TextField fx:id="ingredientNameField" promptText="Ingredient Name" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc; -fx-padding: 10;" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="ingredientQuantityField" prefWidth="100.0" promptText="Quantity" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc; -fx-padding: 10;" />
+                                    <TextField fx:id="ingredientUnitField" prefWidth="80.0" promptText="Unit" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc; -fx-padding: 10;" />
+                                 </children>
+                              </HBox>
+                              <HBox spacing="8.0">
+                                 <children>
+                                    <Button fx:id="addIngredientBtn" onAction="#addIngredient" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15; -fx-font-weight: bold;" text="✅ Add" />
+                                    <Button fx:id="updateIngredientBtn" onAction="#updateIngredient" style="-fx-background-color: #ffc107; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15; -fx-font-weight: bold;" text="🔄 Update" />
+                                    <Button fx:id="clearIngredientBtn" onAction="#clearIngredientForm" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15; -fx-font-weight: bold;" text="🗑️ Clear" />
+                                    <Button fx:id="refreshIngredient" onAction="#refreshIngredient" style="-fx-background-color: #6f42c1; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="🔄 Refresh" />
+                                    
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #495057;" text="📋 Ingredients List:" />
+                              <ListView fx:id="ingredientsList" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e9ecef;" styleClass="compact-products-table" stylesheets="@../styles/product-styles.css" VBox.vgrow="ALWAYS" />
+                              <HBox spacing="8.0">
+                                 <children>
+                                    <Button onAction="#editSelectedIngredient" style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="✏️ Edit Selected" />
+                                    <Button onAction="#deleteSelectedIngredient" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="🗑️ Delete Selected" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <!-- Stock Tab -->
+            <Tab fx:id="stocksTab" closable="false" text="📦 Stocks">
+               <content>
+                  <VBox spacing="15.0" style="-fx-background-color: #f0f2f5;">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-fill: #2c3e50;" text="Stock Management" />
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20;">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #495057;" text="➕ Add New Product:" />
+                              <TextField fx:id="stockNameField" promptText="Product Name" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc; -fx-padding: 10;" />
+                              <TextField fx:id="stockDescriptionField" promptText="Product Description" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc; -fx-padding: 10;" />
+                              <Button fx:id="addStockBtn" onAction="#addStock" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15; -fx-font-weight: bold;" text="📦 Add Product" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #495057;" text="📋 Products List:" />
+                              <ListView fx:id="stockList" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e9ecef;" VBox.vgrow="ALWAYS" />
+                              <HBox spacing="8.0">
+                                 <children>
+                                    <Button onAction="#deleteSelectedStock" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="🗑️ Delete Selected" />
+                                    <Button onAction="#refreshStock" style="-fx-background-color: #6f42c1; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="🔄 Refresh Stock" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <!-- Recipe Tab (Changes applied here) -->
+            <Tab fx:id="recipesTab" closable="false" text="👨‍🍳 Recipes">
+               <content>
+                  <VBox spacing="15.0" style="-fx-background-color: #f0f2f5;">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-fill: #2c3e50;" text="Recipe Management" />
+                        <!-- Add Recipe Form -->
+                        <VBox prefHeight="794.0" prefWidth="1199.0" spacing="10.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #495057;" text="🍽️ Create Recipe for Stock:" />
+                              <ComboBox fx:id="recipeStockCombo" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="1157.0" promptText="Select Stock Product" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc; -fx-padding: 8;" />
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #495057;" text="🥬 Add Ingredients:" />
+                              <HBox prefHeight="30.0" prefWidth="1157.0" spacing="8.0">
+                                 <children>
+                                    <ComboBox fx:id="recipeIngredientCombo" promptText="Select Ingredient" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc; -fx-padding: 8;" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="recipeQuantityField" prefWidth="150.0" promptText="Required Quantity" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc; -fx-padding: 8;" />
+                                 </children>
+                              </HBox>
+                              <HBox spacing="8.0">
+                                 <children>
+                                    <Button fx:id="addMoreIngredientBtn" onAction="#addMoreIngredient" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 5 10; -fx-font-weight: bold;" text="➕ Add More" />
+                                    <Button onAction="#removeSelectedIngredient" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 5 10; -fx-font-weight: bold;" text="➖ Remove" />
+                                    <Button onAction="#clearSelectedIngredients" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 5 10; -fx-font-weight: bold;" text="🗑️ Clear All" />
+                                 </children>
+                              </HBox>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #495057;" text="✅ Selected Ingredients:" />
+                              <ListView fx:id="selectedIngredientsList" prefHeight="500.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e9ecef;" VBox.vgrow="ALWAYS" />
+                              <Button fx:id="addToRecipeBtn" onAction="#addToRecipe" style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 6 12; -fx-font-weight: bold; -fx-font-size: 13px;" text="🍽️ Add to Recipe" />
+                           </children>
+                        </VBox>
+                        <!-- Recipe List -->
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #495057;" text="📋 Stocks with Recipes:" />
+                              <ListView fx:id="recipeList" prefHeight="511.0" prefWidth="1158.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e9ecef;" VBox.vgrow="ALWAYS" />
+                              <HBox spacing="8.0">
+                                 <children>
+                                    <Button onAction="#viewSelectedStock" style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 5 10; -fx-font-weight: bold;" text="👁️ View" />
+                                    <Button onAction="#editSelectedStock" style="-fx-background-color: #ffc107; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 5 10; -fx-font-weight: bold;" text="✏️ Edit" />
+                                    <Button onAction="#deleteSelectedRecipeStock" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 5 10; -fx-font-weight: bold;" text="🗑️ Delete All Recipes" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <!-- Reports Tab -->
+            <Tab fx:id="reportsTab" closable="false" text="📊 Reports">
+               <content>
+                  <VBox spacing="15.0" style="-fx-background-color: #f0f2f5;">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 20px; -fx-text-fill: #2c3e50;" text="Activity Reports" />
+                        <VBox spacing="10.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20;">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #495057;" text="📅 Filter by Date:" />
+                              <HBox spacing="8.0">
+                                 <children>
+                                    <Button fx:id="todayBtn" onAction="#showTodayReports" prefWidth="90.0" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="📅 Today" />
+                                    <Button fx:id="yesterdayBtn" onAction="#showYesterdayReports" prefWidth="100.0" style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="📆 Yesterday" />
+                                    <Button fx:id="thisWeekBtn" onAction="#showThisWeekReports" prefWidth="100.0" style="-fx-background-color: #6f42c1; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="📊 This Week" />
+                                    <Button fx:id="allBtn" onAction="#showAllReports" prefWidth="70.0" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="📋 All" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="reportFilterLabel" style="-fx-font-style: italic; -fx-text-fill: #6c757d; -fx-font-size: 13px;" text="📌 Showing: All Reports" />
+                           </children>
+                        </VBox>
+                        <HBox spacing="10.0" style="-fx-padding: 15; -fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8;">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-text-fill: #495057;" text="From:" />
+                              <DatePicker fx:id="startDatePicker" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc;" />
+                              <Label style="-fx-font-weight: bold; -fx-text-fill: #495057;" text="To:" />
+                              <DatePicker fx:id="endDatePicker" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc;" />
+                              <Label style="-fx-font-weight: bold; -fx-text-fill: #495057;" text="Type:" />
+                              <ComboBox fx:id="filterTypeCombo" prefWidth="120.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #cccccc;" />
+                              <Button fx:id="filterButton" onAction="#filterReports" style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="🔍 Filter" />
+                              <Button fx:id="clearFilterButton" onAction="#clearReportFilter" style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="🗑️ Clear" />
+                              <Button fx:id="refreshReportButton" onAction="#loadAllReports" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="🔄 Refresh" />
+                              <Button fx:id="clearOldReportsButton" onAction="#clearOldReports" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 7 12; -fx-font-weight: bold;" text="🧹 Clear Old" />
+                                 </children>
+                              </HBox>
+                        <VBox style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 20;" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #495057;" text="📋 Reports Table:" />
+                              <TableView fx:id="reportTable" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #e9ecef;" styleClass="table-compact" stylesheets="@../styles/reports-dashboard-styles.css" VBox.vgrow="ALWAYS">
+                                 <columns>
+                                    <TableColumn fx:id="dateColumn" prefWidth="150.0" text="📅 Date/Time" />
+                                    <TableColumn fx:id="typeColumn" prefWidth="100.0" text="🏷️ Type" />
+                                    <TableColumn fx:id="nameColumn" prefWidth="150.0" text="📝 Item Name" />
+                                    <TableColumn fx:id="actionColumn" prefWidth="100.0" text="⚡ Action" />
+                                    <TableColumn fx:id="oldValueColumn" prefWidth="200.0" text="📊 Old Value" />
+                                    <TableColumn fx:id="newValueColumn" prefWidth="200.0" text="🆕 New Value" />
+                                    <TableColumn fx:id="descriptionColumn" prefWidth="250.0" text="📄 Description" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="8.0" styleClass="main-content" stylesheets="@../styles/product-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductController">
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
+   <children>
+      <!-- Compact Page Header -->
+      <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="compact-page-header">
+         <children>
+            <Label styleClass="compact-page-title" text="🍽️ Product Management">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="productCountLabel" styleClass="compact-info-badge" text="0 Products" />
+            <Button fx:id="updateAllStatusButton" onAction="#handleUpdateAllStatus" styleClass="compact-stock-button" text="🔄 Update Status" />
+         </children>
+      </HBox>
+
+      <!-- Compact Product Form Section -->
+      <VBox maxHeight="180.0" prefHeight="162.0" prefWidth="1057.0" spacing="12.0" styleClass="compact-form-section">
+         <children>
+            <!-- Compact Form Grid -->
+            <GridPane hgap="16.0" prefHeight="58.0" prefWidth="1023.0" styleClass="compact-form-grid" vgap="12.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="180.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="80.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="150.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="60.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="120.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="60.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="120.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="40.0" />
+               </rowConstraints>
+               <children>
+                  <Label styleClass="compact-field-label" text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                  <TextField fx:id="productNameField" promptText="Product name..." styleClass="compact-text-field" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  
+                  <Label styleClass="compact-field-label" text="Category:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                  <ComboBox fx:id="categoryComboBox" maxHeight="56.0" minHeight="27.0" prefHeight="27.0" prefWidth="124.0" promptText="Category..." styleClass="compact-combo-box" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                  
+                  <Label styleClass="compact-field-label" text="Price:" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                  <TextField fx:id="priceField" promptText="0.00" styleClass="compact-text-field" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                  
+                  <Label styleClass="compact-field-label" text="Status:" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+                  <ComboBox fx:id="statusComboBox" maxHeight="66.0" prefHeight="66.0" prefWidth="109.0" promptText="Status..." styleClass="compact-combo-box" GridPane.columnIndex="7" GridPane.rowIndex="0" />
+               </children>
+            </GridPane>
+            
+            <!-- Compact Action Buttons -->
+            <HBox alignment="CENTER" spacing="8.0" styleClass="compact-action-buttons">
+               <children>
+                  <Button fx:id="addProductButton" onAction="#handleAddProduct" styleClass="compact-add-button" text="➕ Add" />
+                  <Button fx:id="updateProductButton" onAction="#handleUpdateProduct" styleClass="compact-update-button" text="✏️ Update" />
+                  <Button fx:id="deleteProductButton" onAction="#handleDeleteProduct" styleClass="compact-delete-button" text="🗑️ Delete" />
+                  <Button fx:id="checkAvailabilityButton" onAction="#handleCheckAvailability" styleClass="compact-info-button" text="📊 Check" />
+                  <Button fx:id="clearFormButton" onAction="#handleClearForm" styleClass="compact-neutral-button" text="🔄 Clear" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+
+      <!-- Compact Search and Filter Section -->
+      <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="compact-search-section">
+         <children>
+            <Label styleClass="compact-search-label" text="Search:" />
+            <TextField fx:id="searchField" promptText="🔍 Search products..." styleClass="compact-search-field" HBox.hgrow="ALWAYS" />
+            
+            <Label styleClass="compact-search-label" text="Category:" />
+            <ComboBox fx:id="filterCategoryCombo" onAction="#handleCategoryFilter" promptText="All" styleClass="compact-filter-combo" />
+            
+            <Label styleClass="compact-search-label" text="Status:" />
+            <ComboBox fx:id="filterStatusCombo" onAction="#handleStatusFilter" promptText="All" styleClass="compact-filter-combo" />
+            
+            <Button fx:id="refreshButton" onAction="#handleRefresh" styleClass="compact-refresh-button" text="🔄" />
+         </children>
+      </HBox>
+
+      <!-- Compact Table Header with Status Info -->
+      <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="compact-table-header">
+         <children>
+            <Label styleClass="compact-table-title" text="📋 Products">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="availableCountLabel" styleClass="compact-status-available" text="0 Available" />
+            <Label fx:id="unavailableCountLabel" styleClass="compact-status-unavailable" text="0 Unavailable" />
+            <Label fx:id="discontinuedCountLabel" styleClass="compact-status-discontinued" text="0 Discontinued" />
+         </children>
+      </HBox>
+
+      <!-- Compact Products Table -->
+      <TableView fx:id="productsTable" styleClass="compact-products-table" VBox.vgrow="ALWAYS">
+         <columns>
+            <TableColumn fx:id="productIdColumn" minWidth="40.0" prefWidth="50.0" styleClass="compact-id-column" text="ID" />
+            <TableColumn fx:id="productNameColumn" minWidth="200.0" prefWidth="280.0" styleClass="compact-name-column" text="Product Name" />
+            <TableColumn fx:id="categoryIdColumn" minWidth="120.0" prefWidth="160.0" styleClass="compact-category-column" text="Category" />
+            <TableColumn fx:id="priceColumn" minWidth="80.0" prefWidth="100.0" styleClass="compact-price-column" text="Price" />
+            <TableColumn fx:id="statusColumn" minWidth="100.0" prefWidth="120.0" styleClass="compact-status-column" text="Status" />
+         </columns>
+      </TableView>
+   </children>
+</VBox>
